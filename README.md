@@ -45,19 +45,31 @@ Windows 11 — для игр и программ, которым нужен Wind
 ## Важные документы в репозитории
 
 - **[docs/bios-settings.md](docs/bios-settings.md)** — как войти в BIOS на Acer Nitro, отключить Secure Boot, Fast Boot, TPM
+- **[docs/windows-prep.md](docs/windows-prep.md)** — **как отключить BitLocker / Device encryption и Fast Startup**
 - **[docs/partitioning.md](docs/partitioning.md)** — какой программой размечать диск, почему GParted, как создать EFI 1 ГБ
 - **[docs/partition-plan.md](docs/partition-plan.md)** — общая схема разделов
 
 ---
 
-## Порядок установки (кратко)
+## Порядок установки
 
-1. Настроить BIOS (Secure Boot OFF, Fast Boot OFF, TPM по возможности OFF) → см. `docs/bios-settings.md`
+1. Настроить BIOS (Secure Boot OFF, Fast Boot OFF, TPM по возможности OFF)  
+   → подробности: [`docs/bios-settings.md`](docs/bios-settings.md)
+
 2. Установить Windows 11 на диск **512 ГБ**
-3. В Windows отключить BitLocker / Device encryption и Fast Startup
-4. Загрузиться с **GParted Live** и разметить диск **1 ТБ** (EFI 1 ГБ + Omarchy 350 ГБ + DATA) → см. `docs/partitioning.md`
+
+3. В Windows подготовить систему:  
+   - Отключить **BitLocker / Device encryption**  
+   - Отключить **Fast Startup**  
+   → подробная инструкция: [`docs/windows-prep.md`](docs/windows-prep.md)
+
+4. Загрузиться с **GParted Live** и разметить диск **1 ТБ** (EFI 1 ГБ + Omarchy 350 ГБ + DATA)  
+   → [`docs/partitioning.md`](docs/partitioning.md)
+
 5. Установить Omarchy на раздел 350 ГБ
+
 6. Добавить Windows в Limine (`sudo limine-scan`)
+
 7. Настроить автомонтирование DATA в Linux
 
 ---
@@ -67,6 +79,7 @@ Windows 11 — для игр и программ, которым нужен Wind
 - [x] Решение по ОС и дискам
 - [x] Размеры: Omarchy 350 ГБ, DATA ~650 ГБ
 - [x] Инструкция по BIOS (Secure Boot и др.)
+- [x] Инструкция по отключению BitLocker и Fast Startup
 - [x] Рекомендация по инструменту разметки (GParted)
 - [ ] Создать `autounattend.xml`
 - [ ] PowerShell-скрипты (debloat + apps)
