@@ -66,22 +66,38 @@ Write-Step "Sumatra PDF"
 Install-WingetPackage "SumatraPDF.SumatraPDF" "Sumatra PDF"
 
 # --- Редакторы и языки ---
-Write-Step "VS Code, Python, Rust"
+Write-Step "VS Code, Python, Rust, Node.js"
 Install-WingetPackage "Microsoft.VisualStudioCode" "VS Code"
 Install-WingetPackage "Python.Python.3.12" "Python 3.12"
 Install-WingetPackage "Rustlang.Rustup" "Rustup"
+Install-WingetPackage "OpenJS.NodeJS.LTS" "Node.js LTS"
+
+# --- OpenCode (AI coding agent for terminal) ---
+Write-Step "OpenCode"
+# Предпочтительно winget; если пакета нет — через npm после Node.js
+$oc = winget search --id SST.opencode -e 2>$null
+if ($LASTEXITCODE -eq 0 -and $oc -match "SST\.opencode") {
+    Install-WingetPackage "SST.opencode" "OpenCode"
+} else {
+    Write-Host "SST.opencode not in winget, trying npm global install..." -ForegroundColor Yellow
+    # Обновить PATH в этой сессии после Node
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" +
+                [System.Environment]::GetEnvironmentVariable("Path", "User")
+    if (Get-Command npm -ErrorAction SilentlyContinue) {
+        npm install -g opencode-ai
+    } else {
+        Write-Host "npm not found yet. After reboot run: npm install -g opencode-ai" -ForegroundColor Red
+    }
+}
 
 # --- Visual Studio Build Tools (MSVC для Rust) + CMake ---
 Write-Step "Visual Studio Build Tools (C++ / MSVC) + CMake"
-# Build Tools с workload VCTools — нужно для rustc MSVC
 $vsOverride = "--quiet --wait --norestart --nocache --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended"
 Install-WingetPackage "Microsoft.VisualStudio.2022.BuildTools" "VS 2022 Build Tools" $vsOverride
 Install-WingetPackage "Kitware.CMake" "CMake"
 
 # --- Шрифты (Nerd Fonts) ---
 Write-Step "Nerd Fonts (FiraCode, JetBrainsMono)"
-# Устанавливаем через scoop-like или прямые пакеты, если есть в winget
-# Альтернатива: скачиваем релизы с GitHub
 $fontsDir = "$env:TEMP\nerd-fonts"
 New-Item -ItemType Directory -Force -Path $fontsDir | Out-Null
 
@@ -109,35 +125,19 @@ foreach ($font in $fontRepos) {
     }
 }
 
-# --- Настройка starship / zoxide (базово) ---
-Write-Step "Базовая настройка профиля PowerShell"
-$profilePath = $PROFILE.CurrentUserAllHosts
-if (-not (Test-Path $profilePath)) {
-    New-Item -ItemType File -Path $profilePath -Force | Out-Null
-}
-$profileContent = @"
-
-# zoxide
-if (Get-Command zoxide -ErrorAction SilentlyContinue) {
-    Invoke-Expression (& { (zoxide init powershell | Out-String) })
-}
-
-# starship
-if (Get-Command starship -ErrorAction SilentlyContinue) {
-    Invoke-Expression (&starship init powershell)
-}
-"@
-Add-Content -Path $profilePath -Value $profileContent -Encoding UTF8
-
 Write-Step "Готово"
 Write-Host @"
 
 Установка завершена (или почти завершена).
 
 Что проверить вручную:
-1. Visual Studio Installer — убедиться, что установлен workload "Desktop development with C++".
-2. Открыть новый терминал и проверить: rustc --version, cargo --version, code --version, nvim --version.
-3. Шрифты FiraCode Nerd Font / JetBrainsMono Nerd Font — выбрать в Windows Terminal / VS Code.
-4. Пароль пользователя Nurs можно задать позже в Параметрах.
+1. Visual Studio Installer — workload "Desktop development with C++".
+2. Новый терминал: node -v, npm -v, opencode --version, rustc --version, code --version
+3. Шрифты JetBrainsMono / FiraCode Nerd Font в Windows Terminal
+4. Dotfiles: windows\dotfiles\apply.ps1
+5. Пароль пользователя Nurs — задать позже в Параметрах
+
+OpenCode: https://opencode.ai/
+Если opencode не в PATH — новый терминал или: npm install -g opencode-ai
 
 "@ -ForegroundColor Green

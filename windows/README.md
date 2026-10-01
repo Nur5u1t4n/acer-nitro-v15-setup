@@ -29,9 +29,20 @@ Set-ExecutionPolicy RemoteSigned -Force
 .\debloat.ps1
 ```
 
+## Список программ (install-apps.ps1)
+
+- Браузеры: Brave, Chrome, Firefox
+- Steam, 7-Zip, WinRAR
+- PowerShell 7, Git, GitHub CLI, fzf, ripgrep, zoxide, starship, Neovim
+- Sumatra PDF, VS Code
+- Python 3.12, **Node.js LTS**, Rust (rustup)
+- **OpenCode** (`SST.opencode` или `npm i -g opencode-ai`)
+- VS 2022 Build Tools (MSVC) + CMake
+- Nerd Fonts: FiraCode, JetBrainsMono
+
 ## Dotfiles
 
-Папка [`dotfiles/`](dotfiles/) — конфиги Windows Terminal, PowerShell и далее VS Code / Git / nvim.
+Папка [`dotfiles/`](dotfiles/) — Windows Terminal, PowerShell, Starship.
 
 ```powershell
 cd windows\dotfiles
