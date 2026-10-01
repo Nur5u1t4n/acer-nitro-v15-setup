@@ -3,7 +3,9 @@
   <!--
     Acer Nitro V15-41 — чистая установка Windows 11
     Пользователь: Nurs (без пароля)
-    Язык: русский, раскладка: RU + EN
+    Язык: русский
+    Регион: Казахстан
+    Имя ПК: ANV15-41
   -->
 
   <settings pass="windowsPE">
@@ -17,10 +19,10 @@
       <SetupUILanguage>
         <UILanguage>ru-RU</UILanguage>
       </SetupUILanguage>
-      <InputLocale>0409:00000409;0419:00000419</InputLocale>
-      <SystemLocale>ru-RU</SystemLocale>
+      <InputLocale>0419:00000419;0409:00000409</InputLocale>
+      <SystemLocale>ru-KZ</SystemLocale>
       <UILanguage>ru-RU</UILanguage>
-      <UserLocale>ru-RU</UserLocale>
+      <UserLocale>ru-KZ</UserLocale>
     </component>
 
     <component name="Microsoft-Windows-Setup"
@@ -46,8 +48,8 @@
                versionScope="nonSxS"
                xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-      <ComputerName>Nitro-Nurs</ComputerName>
-      <TimeZone>Russia TZ 5 Standard Time</TimeZone>
+      <ComputerName>ANV15-41</ComputerName>
+      <TimeZone>Central Asia Standard Time</TimeZone>
     </component>
 
     <component name="Microsoft-Windows-International-Core"
@@ -57,10 +59,10 @@
                versionScope="nonSxS"
                xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-      <InputLocale>0409:00000409;0419:00000419</InputLocale>
-      <SystemLocale>ru-RU</SystemLocale>
+      <InputLocale>0419:00000419;0409:00000409</InputLocale>
+      <SystemLocale>ru-KZ</SystemLocale>
       <UILanguage>ru-RU</UILanguage>
-      <UserLocale>ru-RU</UserLocale>
+      <UserLocale>ru-KZ</UserLocale>
     </component>
   </settings>
 
