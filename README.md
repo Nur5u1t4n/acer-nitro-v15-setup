@@ -9,6 +9,17 @@ Windows 11 — для игр и программ, которым нужен Wind
 
 ---
 
+## Содержание
+
+- [Принятые решения](#принятые-решения)
+- [Разметка дисков (финальная)](#разметка-дисков-финальная)
+- [Важные документы в репозитории](#важные-документы-в-репозитории)
+- [Порядок установки](#порядок-установки)
+- [Текущий статус](#текущий-статус)
+- [Полезные ссылки](#полезные-ссылки)
+
+---
+
 ## Принятые решения
 
 | Решение | Выбор |
@@ -45,7 +56,7 @@ Windows 11 — для игр и программ, которым нужен Wind
 ## Важные документы в репозитории
 
 - **[docs/bios-settings.md](docs/bios-settings.md)** — как войти в BIOS на Acer Nitro, отключить Secure Boot, Fast Boot, TPM
-- **[docs/windows-prep.md](docs/windows-prep.md)** — **как отключить BitLocker / Device encryption и Fast Startup**
+- **[docs/windows-prep.md](docs/windows-prep.md)** — как отключить BitLocker / Device encryption и Fast Startup
 - **[docs/partitioning.md](docs/partitioning.md)** — какой программой размечать диск, почему GParted, как создать EFI 1 ГБ
 - **[docs/partition-plan.md](docs/partition-plan.md)** — общая схема разделов
 
