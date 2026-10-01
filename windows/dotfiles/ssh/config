@@ -1,0 +1,15 @@
+# ~/.ssh/config — Windows
+# Копируется setup-ssh.ps1 в %USERPROFILE%\.ssh\config
+
+Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_ed25519
+    IdentitiesOnly yes
+
+# Раскомментируй, если появятся другие хосты:
+# Host gitlab.com
+#     HostName gitlab.com
+#     User git
+#     IdentityFile ~/.ssh/id_ed25519
+#     IdentitiesOnly yes
