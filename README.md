@@ -9,8 +9,6 @@ Windows 11 — для игр и программ, которым нужен Wind
 
 ---
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ## Содержание
 
 - [Принятые решения](#принятые-решения)
@@ -19,8 +17,6 @@ Windows 11 — для игр и программ, которым нужен Wind
 - [Порядок установки](#порядок-установки)
 - [Текущий статус](#текущий-статус)
 - [Полезные ссылки](#полезные-ссылки)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ---
 
@@ -39,6 +35,8 @@ Windows 11 — для игр и программ, которым нужен Wind
 | Bootloader | Limine (от Omarchy) |
 | Инструмент разметки | **GParted Live** (для диска 1 ТБ) |
 | Пользователь Windows | **Nurs** (без пароля) |
+| Имя ПК | **ANV15-41** |
+| Язык / регион | Русский / **Казахстан** (ru-KZ) |
 
 ---
 
@@ -88,9 +86,8 @@ Windows 11 — для игр и программ, которым нужен Wind
 - [x] Инструкция по BIOS
 - [x] Инструкция по BitLocker / Fast Startup
 - [x] GParted и разметка
-- [x] Автогенерация оглавления
-- [x] **`autounattend.xml`** (пользователь Nurs, RU, без пароля)
-- [x] **Скрипты install-apps.ps1 и debloat.ps1**
+- [x] `autounattend.xml` (Nurs, RU, регион Казахстан, ПК ANV15-41)
+- [x] Скрипты install-apps.ps1 и debloat.ps1
 - [ ] Полная пошаговая инструкция dual-boot
 - [ ] Монтирование DATA в Omarchy
 
