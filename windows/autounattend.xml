@@ -6,6 +6,7 @@
     Язык: русский
     Регион: Казахстан
     Имя ПК: ANV15-41
+    Часовой пояс: Astana UTC+5 (West Asia Standard Time)
   -->
 
   <settings pass="windowsPE">
@@ -49,7 +50,7 @@
                xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <ComputerName>ANV15-41</ComputerName>
-      <TimeZone>Central Asia Standard Time</TimeZone>
+      <TimeZone>West Asia Standard Time</TimeZone>
     </component>
 
     <component name="Microsoft-Windows-International-Core"

@@ -17,7 +17,7 @@
 | Раскладки | Русская + Английская |
 | Имя ПК | **ANV15-41** |
 | Пользователь | **Nurs** (администратор, без пароля) |
-| Часовой пояс | Central Asia Standard Time (UTC+6) |
+| Часовой пояс | **Astana UTC+5** (`West Asia Standard Time`) |
 
 ## Как использовать autounattend.xml
 
@@ -53,3 +53,4 @@ Set-ExecutionPolicy RemoteSigned -Force
 - Пароль пользователя **Nurs** пустой — задайте позже в Параметрах → Учётные записи.
 - Visual Studio Build Tools ставится в тихом режиме; при необходимости доустановите компоненты через Visual Studio Installer.
 - После установки шрифтов выберите FiraCode Nerd Font / JetBrainsMono Nerd Font в Windows Terminal и VS Code.
+- В Windows часовой пояс может отображаться как «(UTC+05:00) Ашхабад, Ташкент» — это тот же UTC+5, что и Astana.
