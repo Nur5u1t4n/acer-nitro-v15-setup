@@ -1,0 +1,72 @@
+# Starship — компактный пресет (Nerd Font icons)
+# Путь: %USERPROFILE%\.config\starship.toml
+# Документация: https://starship.rs/config/
+
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$nodejs\
+$python\
+$rust\
+$cmd_duration\
+$line_break\
+$character"""
+
+add_newline = true
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vicmd_symbol = "[❮](bold yellow)"
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+style = "bold cyan"
+read_only = " 🔒"
+
+[git_branch]
+symbol = " "
+style = "bold purple"
+
+[git_status]
+style = "bold yellow"
+conflicted = "="
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?"
+stashed = "$"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+
+[cmd_duration]
+min_time = 2_000
+format = "took [$duration](bold yellow)"
+
+[nodejs]
+symbol = " "
+detect_files = ["package.json", ".node-version"]
+
+[python]
+symbol = " "
+detect_files = [".python-version", "Pipfile", "pyproject.toml"]
+
+[rust]
+symbol = " "
+detect_extensions = ["rs"]
+
+[username]
+style_user = "bold green"
+style_root = "bold red"
+format = "[$user]($style)@"
+show_always = false
+
+[hostname]
+ssh_only = true
+format = "[$hostname](bold blue) "

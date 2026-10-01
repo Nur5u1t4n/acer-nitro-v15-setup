@@ -1,7 +1,8 @@
 #Requires -Version 5.1
 <#
 .SYNOPSIS
-    Применяет Windows Terminal + PowerShell dotfiles из этого репозитория.
+    Применяет Windows Terminal + PowerShell + Starship dotfiles.
+    При необходимости ставит PSReadLine и Terminal-Icons из PSGallery.
 #>
 
 $ErrorActionPreference = "Stop"
@@ -16,32 +17,64 @@ function Backup-File([string]$Path) {
     }
 }
 
+function Install-PsModuleIfMissing([string]$Name) {
+    if (-not (Get-Module -ListAvailable -Name $Name)) {
+        Write-Host "Installing module $Name ..." -ForegroundColor Yellow
+        Install-Module -Name $Name -Scope CurrentUser -Force -AllowClobber -AcceptLicense -ErrorAction Stop
+    } else {
+        Write-Host "Module $Name already installed." -ForegroundColor DarkGray
+    }
+}
+
 Write-Host "=== Apply Windows dotfiles ===" -ForegroundColor Cyan
 
+# --- Modules ---
+Write-Host "`n--- PowerShell modules ---" -ForegroundColor Cyan
+try {
+    Install-PsModuleIfMissing "PSReadLine"
+    Install-PsModuleIfMissing "Terminal-Icons"
+} catch {
+    Write-Host "Module install failed: $_. Run as user with internet; may need: Set-PSRepository PSGallery -InstallationPolicy Trusted" -ForegroundColor Red
+}
+
 # --- Windows Terminal ---
+Write-Host "`n--- Windows Terminal ---" -ForegroundColor Cyan
 $wtCandidates = @(
     "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json",
     "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings.json",
     "$env:LOCALAPPDATA\Microsoft\Windows Terminal\settings.json"
 )
-
 $wtTarget = $wtCandidates | Where-Object { Test-Path (Split-Path $_ -Parent) } | Select-Object -First 1
 $wtSource = Join-Path $Root "windows-terminal\settings.json"
 
 if (-not (Test-Path $wtSource)) {
     Write-Host "Missing: $wtSource" -ForegroundColor Red
 } elseif (-not $wtTarget) {
-    Write-Host "Windows Terminal folder not found. Install WT first, open it once, then re-run." -ForegroundColor Yellow
+    Write-Host "Windows Terminal folder not found. Open WT once, then re-run." -ForegroundColor Yellow
 } else {
     Backup-File $wtTarget
     Copy-Item -Path $wtSource -Destination $wtTarget -Force
-    Write-Host "Windows Terminal settings -> $wtTarget" -ForegroundColor Green
+    Write-Host "WT settings -> $wtTarget" -ForegroundColor Green
+}
+
+# --- Starship ---
+Write-Host "`n--- Starship ---" -ForegroundColor Cyan
+$starSource = Join-Path $Root "starship\starship.toml"
+$starDir = Join-Path $env:USERPROFILE ".config"
+$starTarget = Join-Path $starDir "starship.toml"
+if (Test-Path $starSource) {
+    if (-not (Test-Path $starDir)) {
+        New-Item -ItemType Directory -Path $starDir -Force | Out-Null
+    }
+    Backup-File $starTarget
+    Copy-Item -Path $starSource -Destination $starTarget -Force
+    Write-Host "starship.toml -> $starTarget" -ForegroundColor Green
 }
 
 # --- PowerShell 7 profile ---
+Write-Host "`n--- PowerShell profile ---" -ForegroundColor Cyan
 $psSource = Join-Path $Root "powershell\Microsoft.PowerShell_profile.ps1"
 
-# Профиль для pwsh: CurrentUserCurrentHost
 if (Get-Command pwsh -ErrorAction SilentlyContinue) {
     $pwshProfile = & pwsh -NoProfile -Command 'echo $PROFILE'
     $pwshDir = Split-Path $pwshProfile -Parent
@@ -50,9 +83,8 @@ if (Get-Command pwsh -ErrorAction SilentlyContinue) {
     }
     Backup-File $pwshProfile
     Copy-Item -Path $psSource -Destination $pwshProfile -Force
-    Write-Host "PowerShell 7 profile -> $pwshProfile" -ForegroundColor Green
+    Write-Host "Profile -> $pwshProfile" -ForegroundColor Green
 } else {
-    # Fallback: Documents\PowerShell
     $fallback = Join-Path $env:USERPROFILE "Documents\PowerShell\Microsoft.PowerShell_profile.ps1"
     $dir = Split-Path $fallback -Parent
     if (-not (Test-Path $dir)) {
@@ -60,9 +92,8 @@ if (Get-Command pwsh -ErrorAction SilentlyContinue) {
     }
     Backup-File $fallback
     Copy-Item -Path $psSource -Destination $fallback -Force
-    Write-Host "PowerShell profile (fallback) -> $fallback" -ForegroundColor Yellow
-    Write-Host "Install PowerShell 7, then re-run if needed." -ForegroundColor Yellow
+    Write-Host "Profile (fallback) -> $fallback" -ForegroundColor Yellow
 }
 
 Write-Host "`nDone. Restart Windows Terminal." -ForegroundColor Cyan
-Write-Host "Font: JetBrainsMono Nerd Font (install via install-apps.ps1 if missing)." -ForegroundColor DarkGray
+Write-Host "Need: JetBrainsMono Nerd Font + starship (install-apps.ps1)." -ForegroundColor DarkGray

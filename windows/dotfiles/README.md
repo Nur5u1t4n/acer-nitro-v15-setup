@@ -7,17 +7,19 @@
 ```
 windows/dotfiles/
 ├── README.md
+├── apply.ps1
 ├── windows-terminal/
-│   └── settings.json      ← Windows Terminal (wt)
+│   └── settings.json
 ├── powershell/
 │   └── Microsoft.PowerShell_profile.ps1
-└── apply.ps1              ← копирует конфиги в нужные места
+└── starship/
+    └── starship.toml
 ```
 
 ## Порядок
 
-1. Установить программы (`install-apps.ps1`) — PowerShell 7, Nerd Fonts, starship, zoxide и т.д.
-2. Запустить `apply.ps1` **от обычного пользователя** (не обязательно админ).
+1. `install-apps.ps1` — PowerShell 7, Nerd Fonts, starship, zoxide…
+2. `apply.ps1` — ставит **PSReadLine**, **Terminal-Icons**, копирует конфиги.
 3. Полностью закрыть Windows Terminal и открыть снова.
 
 ```powershell
@@ -25,27 +27,45 @@ cd path\to\acer-nitro-v15-setup\windows\dotfiles
 .\apply.ps1
 ```
 
-## Windows Terminal
+Если PSGallery ругается:
 
-- Файл: `windows-terminal/settings.json`
-- Цель: `%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json`
-- По умолчанию: **PowerShell 7**
-- Шрифт: **JetBrainsMono Nerd Font** (запасной — Cascadia Mono)
-- Тема: тёмная, схема One Half Dark
+```powershell
+Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+Install-Module PSReadLine, Terminal-Icons -Scope CurrentUser -Force
+```
 
-> `apply.ps1` **делает бэкап** текущего `settings.json` перед заменой.
+## Что настроено
 
-## PowerShell 7
+### Windows Terminal
+- Профиль по умолчанию: PowerShell 7
+- Шрифт: JetBrainsMono Nerd Font
+- Схема: One Half Dark
 
-- Файл: `powershell/Microsoft.PowerShell_profile.ps1`
-- Цель: `$PROFILE` для pwsh (обычно  
-  `Documents\PowerShell\Microsoft.PowerShell_profile.ps1`)
-- Включает: starship, zoxide, удобные alias, UTF-8
+### PowerShell
+- **PSReadLine** — история, ListView-подсказки, Tab-меню, цвета под One Half Dark
+- **Terminal-Icons** — иконки в `ls` / `Get-ChildItem`
+- **starship** + **zoxide**
 
-## Дальше по плану dotfiles
+### Starship
+Файл: `starship/starship.toml` → `%USERPROFILE%\.config\starship.toml`
+
+Стиль: компактный одно–двухстрочный промпт (directory, git, node/python/rust, время команды).  
+Не «тяжёлая» тема — нормально смотрится с Nerd Font и One Half Dark.
+
+Другие пресеты можно поставить так:
+
+```powershell
+starship preset nerd-font-symbols -o $env:USERPROFILE\.config\starship.toml
+starship preset pure-preset -o $env:USERPROFILE\.config\starship.toml
+starship preset tokyo-night -o $env:USERPROFILE\.config\starship.toml
+```
+
+Потом снова скопировать наш toml из репо, если передумаешь.
+
+## Дальше
 
 - [x] Windows Terminal
-- [x] PowerShell profile
-- [ ] VS Code / settings.json
-- [ ] Git config
+- [x] PowerShell (PSReadLine, Terminal-Icons, starship)
+- [ ] VS Code
+- [ ] Git
 - [ ] Neovim
