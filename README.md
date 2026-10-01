@@ -37,6 +37,7 @@ Windows 11 — для игр и программ, которым нужен Wind
 | Пользователь Windows | **Nurs** (без пароля) |
 | Имя ПК | **ANV15-41** |
 | Язык / регион | Русский / **Казахстан** (ru-KZ) |
+| Часовой пояс | Astana UTC+5 |
 
 ---
 
@@ -58,24 +59,30 @@ Windows 11 — для игр и программ, которым нужен Wind
 
 ## Важные документы в репозитории
 
-- **[docs/bios-settings.md](docs/bios-settings.md)** — BIOS: Secure Boot, Fast Boot, TPM
-- **[docs/windows-prep.md](docs/windows-prep.md)** — BitLocker и Fast Startup
-- **[docs/partitioning.md](docs/partitioning.md)** — GParted, EFI 1 ГБ
-- **[docs/partition-plan.md](docs/partition-plan.md)** — схема разделов
-- **[windows/](windows/)** — `autounattend.xml` + скрипты установки программ и debloat
+| Документ | О чём |
+|----------|--------|
+| **[docs/dual-boot-guide.md](docs/dual-boot-guide.md)** | **Полная пошаговая инструкция** (главный чеклист) |
+| [docs/bios-settings.md](docs/bios-settings.md) | BIOS: Secure Boot, Fast Boot, TPM |
+| [docs/windows-prep.md](docs/windows-prep.md) | BitLocker и Fast Startup |
+| [docs/partitioning.md](docs/partitioning.md) | GParted, EFI 1 ГБ |
+| [docs/partition-plan.md](docs/partition-plan.md) | Схема разделов |
+| [docs/data-mount.md](docs/data-mount.md) | Монтирование DATA в Windows и Omarchy |
+| [windows/](windows/) | `autounattend.xml` + install-apps + debloat |
 
 ---
 
 ## Порядок установки
 
-1. Настроить BIOS → [`docs/bios-settings.md`](docs/bios-settings.md)
-2. Установить Windows 11 на **512 ГБ** с `windows/autounattend.xml` в корне флешки
-3. Подготовить Windows (BitLocker OFF, Fast Startup OFF) → [`docs/windows-prep.md`](docs/windows-prep.md)
-4. Запустить `windows/scripts/install-apps.ps1` и `debloat.ps1`
-5. Разметить диск **1 ТБ** через GParted → [`docs/partitioning.md`](docs/partitioning.md)
-6. Установить Omarchy на раздел 350 ГБ
-7. Добавить Windows в Limine (`sudo limine-scan`)
-8. Настроить автомонтирование DATA в Linux
+1. BIOS → [`docs/bios-settings.md`](docs/bios-settings.md)
+2. Windows 11 на 512 ГБ + `autounattend.xml`
+3. BitLocker / Fast Startup OFF → [`docs/windows-prep.md`](docs/windows-prep.md)
+4. Скрипты `install-apps.ps1` / `debloat.ps1`
+5. GParted: разметка 1 ТБ → [`docs/partitioning.md`](docs/partitioning.md)
+6. Omarchy на раздел 350 ГБ
+7. `sudo limine-scan`
+8. DATA → [`docs/data-mount.md`](docs/data-mount.md)
+
+**Сквозной гайд:** [`docs/dual-boot-guide.md`](docs/dual-boot-guide.md)
 
 ---
 
@@ -86,16 +93,19 @@ Windows 11 — для игр и программ, которым нужен Wind
 - [x] Инструкция по BIOS
 - [x] Инструкция по BitLocker / Fast Startup
 - [x] GParted и разметка
-- [x] `autounattend.xml` (Nurs, RU, регион Казахстан, ПК ANV15-41)
+- [x] `autounattend.xml` (Nurs, RU, KZ, ANV15-41, UTC+5)
 - [x] Скрипты install-apps.ps1 и debloat.ps1
-- [ ] Полная пошаговая инструкция dual-boot
-- [ ] Монтирование DATA в Omarchy
+- [x] **Полная пошаговая инструкция dual-boot**
+- [x] **Монтирование DATA в Omarchy**
+- [ ] Заметки NVIDIA + AMD hybrid (когда ноутбук под рукой)
+- [ ] Драйверы Acer (когда ноутбук под рукой)
 
 ---
 
 ## Полезные ссылки
 
 - [Omarchy Manual](https://omarchy.org/manual/)
+- [Omarchy Dual Boot](https://omarchy.org/manual/dual-boot-install/)
 - [GParted](https://gparted.org/)
 - Hyprland NVIDIA: https://wiki.hypr.land/nvidia/
 
