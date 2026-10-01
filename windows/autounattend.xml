@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+  <!--
+    Acer Nitro V15-41 — чистая установка Windows 11
+    Пользователь: Nurs (без пароля)
+    Язык: русский, раскладка: RU + EN
+  -->
+
+  <settings pass="windowsPE">
+    <component name="Microsoft-Windows-International-Core-WinPE"
+               processorArchitecture="amd64"
+               publicKeyToken="31bf3856ad364e35"
+               language="neutral"
+               versionScope="nonSxS"
+               xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <SetupUILanguage>
+        <UILanguage>ru-RU</UILanguage>
+      </SetupUILanguage>
+      <InputLocale>0409:00000409;0419:00000419</InputLocale>
+      <SystemLocale>ru-RU</SystemLocale>
+      <UILanguage>ru-RU</UILanguage>
+      <UserLocale>ru-RU</UserLocale>
+    </component>
+
+    <component name="Microsoft-Windows-Setup"
+               processorArchitecture="amd64"
+               publicKeyToken="31bf3856ad364e35"
+               language="neutral"
+               versionScope="nonSxS"
+               xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <UserData>
+        <AcceptEula>true</AcceptEula>
+        <FullName>Nurs</FullName>
+        <Organization></Organization>
+      </UserData>
+    </component>
+  </settings>
+
+  <settings pass="specialize">
+    <component name="Microsoft-Windows-Shell-Setup"
+               processorArchitecture="amd64"
+               publicKeyToken="31bf3856ad364e35"
+               language="neutral"
+               versionScope="nonSxS"
+               xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <ComputerName>Nitro-Nurs</ComputerName>
+      <TimeZone>Russia TZ 5 Standard Time</TimeZone>
+    </component>
+
+    <component name="Microsoft-Windows-International-Core"
+               processorArchitecture="amd64"
+               publicKeyToken="31bf3856ad364e35"
+               language="neutral"
+               versionScope="nonSxS"
+               xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <InputLocale>0409:00000409;0419:00000419</InputLocale>
+      <SystemLocale>ru-RU</SystemLocale>
+      <UILanguage>ru-RU</UILanguage>
+      <UserLocale>ru-RU</UserLocale>
+    </component>
+  </settings>
+
+  <settings pass="oobeSystem">
+    <component name="Microsoft-Windows-Shell-Setup"
+               processorArchitecture="amd64"
+               publicKeyToken="31bf3856ad364e35"
+               language="neutral"
+               versionScope="nonSxS"
+               xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <OOBE>
+        <HideEULAPage>true</HideEULAPage>
+        <HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
+        <HideOnlineAccountScreens>true</HideOnlineAccountScreens>
+        <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
+        <ProtectYourPC>3</ProtectYourPC>
+        <SkipMachineOOBE>true</SkipMachineOOBE>
+        <SkipUserOOBE>true</SkipUserOOBE>
+      </OOBE>
+
+      <UserAccounts>
+        <LocalAccounts>
+          <LocalAccount wcm:action="add">
+            <Name>Nurs</Name>
+            <DisplayName>Nurs</DisplayName>
+            <Group>Administrators</Group>
+            <Password>
+              <Value></Value>
+              <PlainText>true</PlainText>
+            </Password>
+          </LocalAccount>
+        </LocalAccounts>
+      </UserAccounts>
+
+      <AutoLogon>
+        <Enabled>true</Enabled>
+        <Username>Nurs</Username>
+        <Password>
+          <Value></Value>
+          <PlainText>true</PlainText>
+        </Password>
+        <LogonCount>1</LogonCount>
+      </AutoLogon>
+
+      <FirstLogonCommands>
+        <SynchronousCommand wcm:action="add">
+          <Order>1</Order>
+          <Description>Enable PowerShell scripts</Description>
+          <CommandLine>powershell -NoProfile -ExecutionPolicy Bypass -Command "Set-ExecutionPolicy RemoteSigned -Force"</CommandLine>
+        </SynchronousCommand>
+        <SynchronousCommand wcm:action="add">
+          <Order>2</Order>
+          <Description>Run post-install scripts if present on USB</Description>
+          <CommandLine>powershell -NoProfile -ExecutionPolicy Bypass -Command "if (Test-Path 'D:\scripts\install-apps.ps1') { Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File D:\scripts\install-apps.ps1' -Wait } elseif (Test-Path 'E:\scripts\install-apps.ps1') { Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File E:\scripts\install-apps.ps1' -Wait }"</CommandLine>
+        </SynchronousCommand>
+      </FirstLogonCommands>
+    </component>
+  </settings>
+</unattend>
