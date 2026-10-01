@@ -4,18 +4,22 @@
 
 ---
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ## Содержание
 
 - [Как войти в BIOS](#как-войти-в-bios)
 - [Что нужно отключить / изменить](#что-нужно-отключить--изменить)
   - [1. Secure Boot → Disabled](#1-secure-boot--disabled)
   - [2. Fast Boot → Disabled](#2-fast-boot--disabled)
-  - [3. TPM](#3-tpm-trusted-platform-module)
+  - [3. TPM (Trusted Platform Module)](#3-tpm-trusted-platform-module)
   - [4. Boot Mode](#4-boot-mode)
-  - [5. SATA Mode / VMD](#5-sata-mode--vmd-если-есть)
+  - [5. SATA Mode / VMD (если есть)](#5-sata-mode--vmd-если-есть)
 - [Рекомендуемый порядок действий в BIOS](#рекомендуемый-порядок-действий-в-bios)
 - [Важно](#важно)
 - [Ссылки](#ссылки)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ---
 

@@ -2,6 +2,8 @@
 
 ---
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ## Содержание
 
 - [Проблема с EFI-разделом](#проблема-с-efi-разделом)
@@ -12,6 +14,8 @@
 - [Альтернативы](#альтернативы)
 - [Диск 512 ГБ (Windows)](#диск-512-гб-windows)
 - [Важные предупреждения](#важные-предупреждения)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ---
 

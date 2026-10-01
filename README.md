@@ -9,6 +9,8 @@ Windows 11 — для игр и программ, которым нужен Wind
 
 ---
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ## Содержание
 
 - [Принятые решения](#принятые-решения)
@@ -17,6 +19,8 @@ Windows 11 — для игр и программ, которым нужен Wind
 - [Порядок установки](#порядок-установки)
 - [Текущий статус](#текущий-статус)
 - [Полезные ссылки](#полезные-ссылки)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ---
 
@@ -92,6 +96,7 @@ Windows 11 — для игр и программ, которым нужен Wind
 - [x] Инструкция по BIOS (Secure Boot и др.)
 - [x] Инструкция по отключению BitLocker и Fast Startup
 - [x] Рекомендация по инструменту разметки (GParted)
+- [x] Автоматическая генерация оглавления (GitHub Action)
 - [ ] Создать `autounattend.xml`
 - [ ] PowerShell-скрипты (debloat + apps)
 - [ ] Полная пошаговая инструкция dual-boot
