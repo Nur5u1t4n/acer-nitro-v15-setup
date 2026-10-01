@@ -5,7 +5,7 @@
 Linux (Omarchy) — **основная** система.  
 Windows 11 — для игр и программ, которым нужен Windows.
 
-**Обязательное требование:** общий раздел с данными, доступный из обеих систем, который **не удаляется** при переустановке ОС.
+**Обязательное требование:** общий раздел с данными (DATA), доступный из обеих систем и переживающий переустановку ОС.
 
 ---
 
@@ -20,11 +20,9 @@ Windows 11 — для игр и программ, которым нужен Wind
 | Диски | **2 SSD**: 1 ТБ + 512 ГБ |
 | Общий раздел данных | **Да** (NTFS), доступен из Windows и Linux |
 | Размер Omarchy | **350 ГБ** |
+| DATA | **~650 ГБ** |
 | Bootloader | Limine (от Omarchy) |
-
-### Железо
-- Диски: 1 × 1 ТБ + 1 × 512 ГБ SSD
-- Графика: Hybrid AMD Radeon + NVIDIA RTX
+| Инструмент разметки | **GParted Live** (для диска 1 ТБ) |
 
 ---
 
@@ -34,63 +32,55 @@ Windows 11 — для игр и программ, которым нужен Wind
 
 | Раздел | Размер | ФС | Назначение |
 |--------|--------|----|------------|
-| EFI | 1 ГБ | FAT32 | ESP (Limine) |
-| **Omarchy** | **350 ГБ** | Btrfs + LUKS | Корневая система Linux |
-| **DATA** | **~650 ГБ** | **NTFS** | **Общие данные** (фото, документы, игры, загрузки и т.д.) |
+| EFI | **1 ГБ** | FAT32 | ESP (Limine) |
+| Omarchy | **350 ГБ** | Btrfs + LUKS | Система Linux |
+| DATA | **~650 ГБ** | NTFS | Общие данные |
 
 ### Диск 2 — 512 ГБ
 
-| Раздел | Размер | ФС | Назначение |
-|--------|--------|----|------------|
-| EFI | ~100–500 МБ | FAT32 | Windows EFI |
-| MSR | ~16 МБ | — | Microsoft Reserved |
-| Windows (C:) | почти всё | NTFS | Windows 11 + установленные программы/игры |
-| Recovery | ~1 ГБ | NTFS | Восстановление |
-
-### Почему так
-
-- Раздел **DATA** живёт отдельно от системных разделов → при переустановке Windows или Omarchy он остаётся нетронутым.
-- NTFS читается и пишется и из Windows, и из Linux.
-- Linux получает 350 ГБ + большой общий раздел.
-- Windows получает целый 512 ГБ диск.
+Полностью под Windows 11 (стандартная разметка установщиком).
 
 ---
 
-## Порядок установки
+## Важные документы в репозитории
 
-1. **BIOS**: Secure Boot OFF, TPM OFF, UEFI.
-2. Установить **Windows 11** на диск **512 ГБ**.
-3. В Windows отключить BitLocker и Fast Startup.
-4. Разметить диск **1 ТБ**:
-   - EFI — 1 ГБ
-   - Omarchy — 350 ГБ
-   - Оставшееся → NTFS с меткой `DATA`
-5. Установить **Omarchy** на раздел 350 ГБ.
-6. После установки Omarchy:
-   - Добавить Windows в Limine (`sudo limine-scan`)
-   - Настроить автоматическое монтирование раздела DATA.
+- **[docs/bios-settings.md](docs/bios-settings.md)** — как войти в BIOS на Acer Nitro, отключить Secure Boot, Fast Boot, TPM
+- **[docs/partitioning.md](docs/partitioning.md)** — какой программой размечать диск, почему GParted, как создать EFI 1 ГБ
+- **[docs/partition-plan.md](docs/partition-plan.md)** — общая схема разделов
+
+---
+
+## Порядок установки (кратко)
+
+1. Настроить BIOS (Secure Boot OFF, Fast Boot OFF, TPM по возможности OFF) → см. `docs/bios-settings.md`
+2. Установить Windows 11 на диск **512 ГБ**
+3. В Windows отключить BitLocker / Device encryption и Fast Startup
+4. Загрузиться с **GParted Live** и разметить диск **1 ТБ** (EFI 1 ГБ + Omarchy 350 ГБ + DATA) → см. `docs/partitioning.md`
+5. Установить Omarchy на раздел 350 ГБ
+6. Добавить Windows в Limine (`sudo limine-scan`)
+7. Настроить автомонтирование DATA в Linux
 
 ---
 
 ## Текущий статус
 
-- [x] Решение по ОС: Windows 11 + Omarchy
-- [x] Linux — основная система
-- [x] Два SSD: 1 ТБ + 512 ГБ
-- [x] Нужен общий раздел данных (NTFS)
-- [x] Размер Omarchy: **350 ГБ**, DATA: ~650 ГБ
+- [x] Решение по ОС и дискам
+- [x] Размеры: Omarchy 350 ГБ, DATA ~650 ГБ
+- [x] Инструкция по BIOS (Secure Boot и др.)
+- [x] Рекомендация по инструменту разметки (GParted)
 - [ ] Создать `autounattend.xml`
-- [ ] Скрипты debloat + apps
-- [ ] Подробная инструкция по разметке и dual-boot
-- [ ] Инструкция по монтированию DATA в Omarchy
+- [ ] PowerShell-скрипты (debloat + apps)
+- [ ] Полная пошаговая инструкция dual-boot
+- [ ] Монтирование DATA в Omarchy
 
 ---
 
 ## Полезные ссылки
 
 - [Omarchy Manual](https://omarchy.org/manual/)
+- [GParted](https://gparted.org/)
 - Hyprland NVIDIA: https://wiki.hypr.land/nvidia/
 
 ---
 
-*Последнее обновление: финальные размеры разделов (Omarchy 350 ГБ).*
+*Репозиторий: https://github.com/Nur5u1t4n/acer-nitro-v15-setup*
