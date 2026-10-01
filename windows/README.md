@@ -1,56 +1,41 @@
-# Windows 11 — файлы установки
+# Windows 11 — файлы установки и dotfiles
 
-## Файлы
+## Установка ОС
 
 | Файл | Назначение |
 |------|------------|
-| `autounattend.xml` | Автоматическая установка Windows 11 |
-| `scripts/install-apps.ps1` | Установка программ через winget + Nerd Fonts |
+| `autounattend.xml` | Автоустановка Windows 11 |
+| `scripts/install-apps.ps1` | Программы через winget + Nerd Fonts |
 | `scripts/debloat.ps1` | Лёгкий debloat |
 
-## Параметры autounattend.xml
+### Параметры autounattend.xml
 
 | Параметр | Значение |
 |----------|----------|
-| Язык интерфейса | Русский (ru-RU) |
-| Регион / форматы | Казахстан (ru-KZ) |
-| Раскладки | Русская + Английская |
+| Язык | Русский (ru-RU) |
+| Регион | Казахстан (ru-KZ) |
+| Раскладки | RU + EN |
 | Имя ПК | **ANV15-41** |
-| Пользователь | **Nurs** (администратор, без пароля) |
-| Часовой пояс | **Astana UTC+5** (`West Asia Standard Time`) |
+| Пользователь | **Nurs** (без пароля) |
+| Часовой пояс | Astana UTC+5 (`West Asia Standard Time`) |
 
-## Как использовать autounattend.xml
+`autounattend.xml` → **корень** флешки с Windows 11. Ставить только на диск **512 ГБ**.
 
-1. Создайте загрузочную флешку с Windows 11 (Rufus / Media Creation Tool).
-2. Скопируйте `autounattend.xml` **в корень** флешки.
-3. При установке Windows файл подхватится автоматически.
-4. Устанавливайте **только на диск 512 ГБ**.
-
-## После первого входа
-
-1. Подключите интернет.
-2. Запустите PowerShell **от имени администратора**.
-3. Выполните:
+После входа:
 
 ```powershell
 Set-ExecutionPolicy RemoteSigned -Force
-# путь к скриптам на флешке или скопированным локально
 .\install-apps.ps1
 .\debloat.ps1
 ```
 
-## Список программ (install-apps.ps1)
+## Dotfiles
 
-- Браузеры: Brave, Chrome, Firefox
-- Steam, 7-Zip, WinRAR
-- PowerShell 7, Git, GitHub CLI, fzf, ripgrep, zoxide, starship, Neovim
-- Sumatra PDF, VS Code, Python 3.12, Rust (rustup)
-- Visual Studio 2022 Build Tools (MSVC + C++ workload) + CMake
-- Nerd Fonts: FiraCode, JetBrainsMono
+Папка [`dotfiles/`](dotfiles/) — конфиги Windows Terminal, PowerShell и далее VS Code / Git / nvim.
 
-## Примечания
+```powershell
+cd windows\dotfiles
+.\apply.ps1
+```
 
-- Пароль пользователя **Nurs** пустой — задайте позже в Параметрах → Учётные записи.
-- Visual Studio Build Tools ставится в тихом режиме; при необходимости доустановите компоненты через Visual Studio Installer.
-- После установки шрифтов выберите FiraCode Nerd Font / JetBrainsMono Nerd Font в Windows Terminal и VS Code.
-- В Windows часовой пояс может отображаться как «(UTC+05:00) Ашхабад, Ташкент» — это тот же UTC+5, что и Astana.
+Подробности: [`dotfiles/README.md`](dotfiles/README.md)
