@@ -1,7 +1,7 @@
 #Requires -Version 5.1
 <#
 .SYNOPSIS
-    Применяет Windows Terminal + PowerShell + Starship dotfiles.
+    Применяет Windows Terminal + PowerShell + Starship + VS Code dotfiles.
     При необходимости ставит PSReadLine и Terminal-Icons из PSGallery.
 #>
 
@@ -95,5 +95,35 @@ if (Get-Command pwsh -ErrorAction SilentlyContinue) {
     Write-Host "Profile (fallback) -> $fallback" -ForegroundColor Yellow
 }
 
-Write-Host "`nDone. Restart Windows Terminal." -ForegroundColor Cyan
-Write-Host "Need: JetBrainsMono Nerd Font + starship (install-apps.ps1)." -ForegroundColor DarkGray
+# --- VS Code ---
+Write-Host "`n--- VS Code ---" -ForegroundColor Cyan
+$vscodeSource = Join-Path $Root "vscode\settings.json"
+$vscodeDir = Join-Path $env:APPDATA "Code\User"
+$vscodeTarget = Join-Path $vscodeDir "settings.json"
+
+if (-not (Test-Path $vscodeSource)) {
+    Write-Host "Missing: $vscodeSource" -ForegroundColor Red
+} else {
+    if (-not (Test-Path $vscodeDir)) {
+        New-Item -ItemType Directory -Path $vscodeDir -Force | Out-Null
+        Write-Host "Created: $vscodeDir" -ForegroundColor DarkGray
+    }
+    Backup-File $vscodeTarget
+    Copy-Item -Path $vscodeSource -Destination $vscodeTarget -Force
+    Write-Host "settings.json -> $vscodeTarget" -ForegroundColor Green
+
+    # Optional: install extensions
+    $extScript = Join-Path $Root "vscode\install-extensions.ps1"
+    if (Test-Path $extScript) {
+        Write-Host "Run extensions installer? (y/N)" -ForegroundColor Yellow
+        $answer = Read-Host
+        if ($answer -eq 'y' -or $answer -eq 'Y') {
+            & $extScript
+        } else {
+            Write-Host "Skipped extensions. Run later: .\vscode\install-extensions.ps1" -ForegroundColor DarkGray
+        }
+    }
+}
+
+Write-Host "`nDone. Restart Windows Terminal and VS Code." -ForegroundColor Cyan
+Write-Host "Need: JetBrainsMono Nerd Font + starship + VS Code (install-apps.ps1)." -ForegroundColor DarkGray
