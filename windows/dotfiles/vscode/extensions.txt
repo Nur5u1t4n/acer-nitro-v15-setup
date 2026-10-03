@@ -1,0 +1,31 @@
+# VS Code Extensions for Windows (Acer Nitro V15-41)
+# Install with: .\install-extensions.ps1
+
+# === Theme & Icons ===
+zhuangtongfa.Material-theme
+PKief.material-icon-theme
+
+# === Core ===
+esbenp.prettier-vscode
+dbaeumer.vscode-eslint
+ms-python.python
+ms-python.vscode-pylance
+ms-python.debugpy
+
+# === Git ===
+eamodio.gitlens
+mhutchie.git-graph
+
+# === Productivity ===
+usernamehw.errorlens
+christian-kohler.path-intellisense
+formulahendry.auto-rename-tag
+streetsidesoftware.code-spell-checker
+
+# === Language support (optional, uncomment if needed) ===
+# rust-lang.rust-analyzer
+# golang.go
+# ms-vscode.cpptools
+# bradlc.vscode-tailwindcss
+# Vue.volar
+# ms-dotnettools.csharp
