@@ -1,7 +1,7 @@
 #Requires -Version 5.1
 <#
 .SYNOPSIS
-    Применяет Windows Terminal + PowerShell + Starship + VS Code dotfiles.
+    Применяет Windows Terminal + PowerShell + Starship + VS Code + Neovim dotfiles.
     При необходимости ставит PSReadLine и Terminal-Icons из PSGallery.
 #>
 
@@ -125,5 +125,30 @@ if (-not (Test-Path $vscodeSource)) {
     }
 }
 
-Write-Host "`nDone. Restart Windows Terminal and VS Code." -ForegroundColor Cyan
-Write-Host "Need: JetBrainsMono Nerd Font + starship + VS Code (install-apps.ps1)." -ForegroundColor DarkGray
+# --- Neovim / LazyVim ---
+Write-Host "`n--- Neovim (LazyVim) ---" -ForegroundColor Cyan
+$nvimSource = Join-Path $Root "nvim"
+$nvimTarget = Join-Path $env:LOCALAPPDATA "nvim"
+
+if (-not (Test-Path $nvimSource)) {
+    Write-Host "Missing: $nvimSource" -ForegroundColor Red
+} else {
+    if (Test-Path $nvimTarget) {
+        $stamp = Get-Date -Format "yyyyMMdd-HHmmss"
+        $nvimBackup = "$nvimTarget.bak-$stamp"
+        Move-Item -Path $nvimTarget -Destination $nvimBackup
+        Write-Host "Backup: $nvimBackup" -ForegroundColor DarkGray
+    }
+    New-Item -ItemType Directory -Path $nvimTarget -Force | Out-Null
+    Copy-Item -Path (Join-Path $nvimSource "*") -Destination $nvimTarget -Recurse -Force
+    Write-Host "LazyVim config -> $nvimTarget" -ForegroundColor Green
+
+    if (Get-Command nvim -ErrorAction SilentlyContinue) {
+        Write-Host "Run 'nvim' to install LazyVim and its plugins on first launch." -ForegroundColor DarkGray
+    } else {
+        Write-Host "Neovim not found. Run install-apps.ps1, then start nvim." -ForegroundColor Yellow
+    }
+}
+
+Write-Host "`nDone. Restart Windows Terminal and VS Code; open nvim for its first-time setup." -ForegroundColor Cyan
+Write-Host "Need: JetBrainsMono Nerd Font + starship + VS Code + Neovim (install-apps.ps1)." -ForegroundColor DarkGray

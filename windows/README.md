@@ -42,7 +42,7 @@ Set-ExecutionPolicy RemoteSigned -Force
 
 ## Dotfiles
 
-Папка [`dotfiles/`](dotfiles/) — Windows Terminal, PowerShell, Starship.
+Папка [`dotfiles/`](dotfiles/) — Windows Terminal, PowerShell, Starship, VS Code и Neovim (LazyVim).
 
 ```powershell
 cd windows\dotfiles

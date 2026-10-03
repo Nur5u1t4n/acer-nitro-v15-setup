@@ -359,6 +359,7 @@ Write-Host @"
    opencode --version
    rustc --version
    code --version
+   nvim --version
 
 3. Шрифты:
    - JetBrainsMono Nerd Font
@@ -366,6 +367,7 @@ Write-Host @"
 
 4. Dotfiles:
    windows\dotfiles\apply.ps1
+   После применения запустить nvim, дождаться установки и выполнить :LazyHealth.
 
 5. SSH:
    windows\dotfiles\ssh\setup-ssh.ps1
