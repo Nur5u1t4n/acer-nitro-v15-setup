@@ -1,5 +1,5 @@
-# Глобальный ~/.gitconfig (Windows)
-# Применяется: windows/dotfiles/git/setup-git.ps1
+# Глобальный ~/.gitconfig — Nursultan Mukhametzhanov / ANV15-41 Windows
+# Применяется: setup-git.ps1
 
 [user]
 	name = Nursultan Mukhametzhanov
@@ -10,24 +10,114 @@
 
 [core]
 	editor = nvim
+	pager = less -F -X
 	autocrlf = true
+	eol = crlf
 	longpaths = true
+	ignorecase = true
+	untrackedCache = true
+	excludesfile = ~/.gitignore_global
 
 [pull]
 	rebase = false
+	ff = only
 
 [fetch]
 	prune = true
+	prunetags = true
 
 [push]
 	default = simple
 	autoSetupRemote = true
+	followTags = true
+
+[rebase]
+	autoStash = true
+	autoSquash = true
+	updateRefs = true
+
+[merge]
+	ff = false
+	conflictstyle = zdiff3
+
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	renames = true
+	mnemonicPrefix = true
+
+[status]
+	showUntrackedFiles = all
+	submoduleSummary = true
+
+[branch]
+	sort = -committerdate
+	autosetupmerge = always
+	autosetuprebase = never
+
+[tag]
+	sort = version:refname
+
+[rerere]
+	enabled = true
+	autoupdate = true
+
+[help]
+	autoCorrect = 20
 
 [color]
 	ui = auto
 
+[color "branch"]
+	current = yellow bold
+	local = green
+	remote = cyan
+
+[color "diff"]
+	meta = cyan
+	frag = magenta
+	old = red
+	new = green
+
+[color "status"]
+	added = green
+	changed = yellow
+	untracked = red
+
 [credential]
 	helper = manager
 
-# SSH уже через ~/.ssh/config (Host github.com)
-# Клонировать: git clone git@github.com:Nur5u1t4n/repo.git
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+
+# --- Aliases ---
+[alias]
+	st = status -sb
+	s = status
+	co = checkout
+	sw = switch
+	br = branch
+	ci = commit
+	cm = commit -m
+	ca = commit --amend --no-edit
+	cane = commit --amend --no-edit
+	unstage = reset HEAD --
+	last = log -1 HEAD --stat
+	lg = log --oneline --decorate --graph -20
+	ll = log --oneline --decorate --graph --all -30
+	ld = log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%ad%Creset %C(green)%an%Creset %s" --date=short -15
+	df = diff
+	dfc = diff --cached
+	ds = diff --stat
+	aa = add --all
+	ap = add -p
+	pullr = pull --rebase
+	pullff = pull --ff-only
+	pushf = push --force-with-lease
+	sync = !git pull --ff-only && git push
+	undo = reset --soft HEAD~1
+	wip = !git add -A && git commit -m "wip"
+	ignore = update-index --assume-unchanged
+	unignore = update-index --no-assume-unchanged
+	root = rev-parse --show-toplevel
+	aliases = config --get-regexp ^alias\\.

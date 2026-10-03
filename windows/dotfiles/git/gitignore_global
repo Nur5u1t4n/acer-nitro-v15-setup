@@ -1,0 +1,33 @@
+# Глобальный ignore — Windows / редакторы / ОС
+# Путь: ~/.gitignore_global  (core.excludesfile)
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macOS (на случай общих дисков)
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Редакторы / IDE
+.idea/
+*.swp
+*.swo
+*~
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# Локальные env / секреты (подстраховка)
+.env
+.env.*
+!.env.example
+*.pem
+id_rsa
+id_ed25519

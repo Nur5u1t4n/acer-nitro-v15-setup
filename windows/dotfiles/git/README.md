@@ -1,27 +1,50 @@
 # Git (Windows)
 
+## Идентичность
+
 | Параметр | Значение |
 |----------|----------|
 | `user.name` | **Nursultan Mukhametzhanov** |
 | `user.email` | **mukhametzhanovnurs@gmail.com** |
-| default branch | `main` |
-| editor | `nvim` |
-| `core.autocrlf` | `true` (Windows) |
+
+## Основные настройки
+
+| Раздел | Что сделано |
+|--------|-------------|
+| **init** | ветка по умолчанию `main` |
+| **core** | editor `nvim`, `autocrlf=true`, longpaths, global gitignore |
+| **pull / push** | ff-only pull, `autoSetupRemote`, followTags |
+| **diff / merge** | histogram, zdiff3, colorMoved |
+| **rebase** | autoStash, autoSquash |
+| **rerere** | включён (запоминает разрешение конфликтов) |
+| **url** | `https://github.com/` → `git@github.com:` (SSH) |
+| **credential** | Git Credential Manager |
+
+## Глобальный ignore
+
+`~/.gitignore_global` — Thumbs.db, `.DS_Store`, `.env`, ключи, мусор IDE.
+
+## Aliases
+
+| Alias | Команда |
+|-------|---------|
+| `st` | status -sb |
+| `lg` / `ll` | log graph |
+| `cm "msg"` | commit -m |
+| `aa` / `ap` | add all / patch |
+| `sync` | pull --ff-only && push |
+| `undo` | soft reset last commit |
+| `pushf` | push --force-with-lease |
+| `pullr` | pull --rebase |
+| `wip` | add all + commit wip |
+
+Список: `git aliases`
 
 ## Применение
-
-После Git + SSH:
 
 ```powershell
 cd path\to\acer-nitro-v15-setup\windows\dotfiles\git
 .\setup-git.ps1
-```
-
-Или вручную:
-
-```powershell
-git config --global user.name "Nursultan Mukhametzhanov"
-git config --global user.email "mukhametzhanovnurs@gmail.com"
 ```
 
 Проверка:
@@ -29,10 +52,4 @@ git config --global user.email "mukhametzhanovnurs@gmail.com"
 ```powershell
 git config --global --list
 ssh -T git@github.com
-```
-
-Клонирование по SSH:
-
-```powershell
-git clone git@github.com:Nur5u1t4n/acer-nitro-v15-setup.git
 ```
