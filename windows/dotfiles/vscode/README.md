@@ -118,6 +118,24 @@ cd path\to\acer-nitro-v15-setup\windows\dotfiles
 | Code Lens | Run + Debug |
 | Auto import / auto self | включены |
 
+### Better Comments
+
+| Тег | Цвет | Смысл |
+|-----|------|--------|
+| `!` | красный, bold | важно / alert |
+| `?` | синий | вопрос |
+| `todo` | оранжевый | задача |
+| `*` | зелёный | highlight |
+| `//` | серый + strikethrough | закомментированный код |
+
+### Todo Tree
+
+Теги: `TODO`, `FIXME`, `HACK`, `BUG`, `XXX`, `NOTE`
+
+- Счётчики в дереве и в status bar
+- Подсветка в редакторе с иконками по типу тега
+- Исключены: `node_modules`, `.git`, `dist`, `build`, `target`, venv, `__pycache__`
+
 ### Прочее
 
 - Spell checker: **en + ru**
@@ -171,7 +189,7 @@ cd path\to\acer-nitro-v15-setup\windows\dotfiles
 - Better Comments — цвета в редакторе
 - Todo Tree — список всех меток в сайдбаре (встроенной альтернативы в VS Code нет)
 
-Примеры комментариев Better Comments:
+Примеры комментариев:
 
 ```text
 // ! важное предупреждение
