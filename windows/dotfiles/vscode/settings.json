@@ -42,6 +42,10 @@
     "**/node_modules": true,
     "**/__pycache__": true,
     "**/.venv": true,
+    "**/venv": true,
+    "**/.pytest_cache": true,
+    "**/.mypy_cache": true,
+    "**/.ruff_cache": true,
     "**/target": true
   },
 
@@ -70,15 +74,31 @@
   "explorer.confirmDragAndDrop": false,
   "explorer.compactFolders": false,
 
-  // === Python / Ruff ===
+  // === Python ===
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.formatOnSave": true,
+    "editor.tabSize": 4,
     "editor.codeActionsOnSave": {
       "source.fixAll": "explicit",
       "source.organizeImports": "explicit"
     }
   },
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.inlayHints.functionReturnTypes": true,
+  "python.analysis.inlayHints.variableTypes": true,
+  "python.analysis.inlayHints.pytestParameters": true,
+  "python.languageServer": "Pylance",
+  "python.terminal.activateEnvironment": true,
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+
+  // === Ruff ===
+  "ruff.enable": true,
+  "ruff.organizeImports": true,
+  "ruff.fixAll": true,
+  "ruff.lint.run": "onSave",
 
   // === Rust ===
   "[rust]": {
