@@ -20,6 +20,7 @@
   "editor.linkedEditing": true,
   "editor.suggestSelection": "first",
   "editor.inlineSuggest.enabled": true,
+  "editor.inlayHints.enabled": "on",
 
   // === Workbench ===
   "workbench.colorTheme": "One Dark Pro",
@@ -40,7 +41,8 @@
     "**/.DS_Store": true,
     "**/node_modules": true,
     "**/__pycache__": true,
-    "**/.venv": true
+    "**/.venv": true,
+    "**/target": true
   },
 
   // === Terminal ===
@@ -77,6 +79,26 @@
       "source.organizeImports": "explicit"
     }
   },
+
+  // === Rust ===
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4
+  },
+  "rust-analyzer.check.command": "clippy",
+  "rust-analyzer.cargo.buildScripts.enable": true,
+  "rust-analyzer.procMacro.enable": true,
+  "rust-analyzer.cargo.features": "all",
+  "rust-analyzer.inlayHints.typeHints.enable": true,
+  "rust-analyzer.inlayHints.parameterHints.enable": true,
+  "rust-analyzer.inlayHints.chainingHints.enable": true,
+  "rust-analyzer.inlayHints.closingBraceHints.enable": true,
+  "rust-analyzer.lens.enable": true,
+  "rust-analyzer.lens.run.enable": true,
+  "rust-analyzer.lens.debug.enable": true,
+  "rust-analyzer.completion.autoimport.enable": true,
+  "rust-analyzer.completion.autoself.enable": true,
 
   // === Spell Checker ===
   "cSpell.language": "en,ru",
