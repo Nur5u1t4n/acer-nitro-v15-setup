@@ -121,6 +121,7 @@
   "rust-analyzer.completion.autoself.enable": true,
 
   // === Better Comments ===
+  // Теги совпадают с Todo Tree + классические ! ? * //
   "better-comments.highlightPlainText": false,
   "better-comments.tags": [
     {
@@ -151,8 +152,8 @@
       "italic": false
     },
     {
-      "tag": "todo",
-      "color": "#FF8C00",
+      "tag": "*",
+      "color": "#98C379",
       "strikethrough": false,
       "underline": false,
       "backgroundColor": "transparent",
@@ -160,8 +161,53 @@
       "italic": false
     },
     {
-      "tag": "*",
-      "color": "#98C379",
+      "tag": "TODO",
+      "color": "#FF8C00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "tag": "FIXME",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "tag": "HACK",
+      "color": "#C678DD",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "BUG",
+      "color": "#E06C75",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "tag": "XXX",
+      "color": "#E5C07B",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "NOTE",
+      "color": "#61AFEF",
       "strikethrough": false,
       "underline": false,
       "backgroundColor": "transparent",
