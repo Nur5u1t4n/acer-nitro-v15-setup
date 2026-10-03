@@ -3,15 +3,15 @@
 .SYNOPSIS
     Создаёт SSH-ключ Ed25519, config и подключает Windows OpenSSH Agent.
 .PARAMETER Email
-    Комментарий к ключу (обычно email).
+    Комментарий к ключу (обычно email). По умолчанию — почта владельца.
 .PARAMETER Comment
-    Доп. метка в комментарии ключа.
+    Метка устройства в комментарии ключа (видно в GitHub / ssh-keygen -l).
 .PARAMETER Force
     Пересоздать ключ, если уже есть (опасно).
 #>
 param(
-    [string]$Email = "",
-    [string]$Comment = "Nurs ANV15-41 Windows",
+    [string]$Email = "mukhametzhanovnurs@gmail.com",
+    [string]$Comment = "ANV15-41 Windows",
     [switch]$Force
 )
 
@@ -61,8 +61,10 @@ if ((Test-Path $keyPath) -and -not $Force) {
         Write-Host "Removing old key (-Force)..." -ForegroundColor Yellow
         Remove-Item $keyPath, $pubPath -Force -ErrorAction SilentlyContinue
     }
-    $keyComment = if ($Email) { "$Comment $Email" } else { $Comment }
+    # -C: подпись ключа. Обычно email; можно email + метка ПК.
+    $keyComment = if ($Email) { "$Email ($Comment)" } else { $Comment }
     Write-Host "Generating Ed25519 key..."
+    Write-Host "Comment (-C): $keyComment" -ForegroundColor DarkGray
     Write-Host "You can set a passphrase (recommended) or leave empty." -ForegroundColor DarkGray
     & $sshKeygen -t ed25519 -f $keyPath -C $keyComment
     if ($LASTEXITCODE -ne 0) {
@@ -100,7 +102,6 @@ try {
     if (-not (Test-Path $sshAdd)) {
         $sshAdd = "ssh-add"
     }
-    # Убрать старые и добавить текущий
     & $sshAdd $keyPath 2>$null
     Write-Host "Key added to agent (if passphrase prompted — enter it)." -ForegroundColor Green
 } catch {
@@ -126,6 +127,6 @@ if (Test-Path $pubPath) {
 }
 
 Write-Host "`nNext:" -ForegroundColor Cyan
-Write-Host "  1. Add public key on GitHub"
+Write-Host "  1. Add public key on GitHub (Title: ANV15-41 Windows)"
 Write-Host "  2. ssh -T git@github.com"
 Write-Host "  3. Configure git user.name / user.email"
