@@ -56,6 +56,9 @@ cd path\to\acer-nitro-v15-setup\windows\dotfiles
 | `editor.guides.bracketPairs` | `"active"` | Подсветка пары скобок |
 | `editor.cursorBlinking` | `smooth` | |
 | `editor.cursorSmoothCaretAnimation` | `on` | |
+| `editor.wordWrap` | `on` | Перенос длинных строк по ширине окна |
+| `editor.wordWrapColumn` | `120` | Используется, если режим `wordWrapColumn` / `bounded` |
+| `editor.wrappingIndent` | `same` | Отступ перенесённых строк как у оригинала |
 | `editor.formatOnSave` | `true` | |
 | `editor.defaultFormatter` | Prettier | Для JS/TS/JSON/MD и т.д. |
 | `editor.inlayHints.enabled` | `on` | Подсказки типов |
@@ -266,6 +269,7 @@ ms-dotnettools.csharp
 | `Shift+F12` | Find All References |
 | `Ctrl+.` | Quick Fix / Code Actions |
 | `Shift+Alt+F` | Format Document |
+| `Alt+Z` | Toggle Word Wrap (вкл/выкл перенос) |
 
 ### Отладка и запуск
 
