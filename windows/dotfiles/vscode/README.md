@@ -118,23 +118,41 @@ cd path\to\acer-nitro-v15-setup\windows\dotfiles
 | Code Lens | Run + Debug |
 | Auto import / auto self | включены |
 
-### Better Comments
+### Better Comments + Todo Tree
+
+Один набор тегов в обоих расширениях (цвета совпадают):
 
 | Тег | Цвет | Смысл |
 |-----|------|--------|
 | `!` | красный, bold | важно / alert |
 | `?` | синий | вопрос |
-| `todo` | оранжевый | задача |
 | `*` | зелёный | highlight |
 | `//` | серый + strikethrough | закомментированный код |
+| `TODO` | оранжевый `#FF8C00` | задача |
+| `FIXME` | красный `#FF2D00` | надо починить |
+| `HACK` | фиолетовый `#C678DD` | костыль |
+| `BUG` | розовый `#E06C75` | баг |
+| `XXX` | жёлтый `#E5C07B` | странное место |
+| `NOTE` | голубой `#61AFEF` | заметка |
 
-### Todo Tree
+- **Better Comments** — подсветка в редакторе
+- **Todo Tree** — дерево по workspace, счётчики, status bar, иконки
+- Todo Tree исключает: `node_modules`, `.git`, `dist`, `build`, `target`, venv, `__pycache__`
 
-Теги: `TODO`, `FIXME`, `HACK`, `BUG`, `XXX`, `NOTE`
+Примеры:
 
-- Счётчики в дереве и в status bar
-- Подсветка в редакторе с иконками по типу тега
-- Исключены: `node_modules`, `.git`, `dist`, `build`, `target`, venv, `__pycache__`
+```text
+// ! важное предупреждение
+// ? вопрос / сомнение
+// * выделенный комментарий
+// // закомментированный код
+// TODO: сделать потом
+// FIXME: падает на пустом вводе
+// HACK: временный костыль
+// BUG: race condition
+// XXX: пересмотреть логику
+// NOTE: контекст для ревью
+```
 
 ### Прочее
 
@@ -182,22 +200,8 @@ cd path\to\acer-nitro-v15-setup\windows\dotfiles
 | `streetsidesoftware.code-spell-checker-russian` | Russian dictionary | Словарь RU |
 | `naumovs.color-highlight` | Color Highlight | Подсветка `#hex` / `rgb()` |
 | `oderwat.indent-rainbow` | Indent Rainbow | Цветные уровни отступов |
-| `aaron-bond.better-comments` | Better Comments | Цветные комментарии (`!`, `?`, `TODO`, `*`) |
-| `Gruntfuggly.todo-tree` | Todo Tree | Дерево TODO/FIXME/HACK по всему проекту |
-
-**Better Comments + Todo Tree** хорошо работают вместе:
-- Better Comments — цвета в редакторе
-- Todo Tree — список всех меток в сайдбаре (встроенной альтернативы в VS Code нет)
-
-Примеры комментариев:
-
-```text
-// ! важное предупреждение
-// ? вопрос / сомнение
-// TODO: сделать потом
-// * выделенный комментарий
-// // закомментированный код (приглушён)
-```
+| `aaron-bond.better-comments` | Better Comments | Цветные комментарии (теги выше) |
+| `Gruntfuggly.todo-tree` | Todo Tree | Дерево TODO/FIXME/… по проекту |
 
 ### Языки
 
