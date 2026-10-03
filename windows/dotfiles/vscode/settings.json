@@ -120,6 +120,119 @@
   "rust-analyzer.completion.autoimport.enable": true,
   "rust-analyzer.completion.autoself.enable": true,
 
+  // === Better Comments ===
+  "better-comments.highlightPlainText": false,
+  "better-comments.tags": [
+    {
+      "tag": "!",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "tag": "?",
+      "color": "#3498DB",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "//",
+      "color": "#474747",
+      "strikethrough": true,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "todo",
+      "color": "#FF8C00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "*",
+      "color": "#98C379",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    }
+  ],
+
+  // === Todo Tree ===
+  "todo-tree.general.tags": [
+    "TODO",
+    "FIXME",
+    "HACK",
+    "BUG",
+    "XXX",
+    "NOTE"
+  ],
+  "todo-tree.general.statusBar": "total",
+  "todo-tree.general.showCountsInTree": true,
+  "todo-tree.filtering.excludeGlobs": [
+    "**/node_modules/**",
+    "**/.git/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/target/**",
+    "**/.venv/**",
+    "**/venv/**",
+    "**/__pycache__/**"
+  ],
+  "todo-tree.highlights.enabled": true,
+  "todo-tree.highlights.defaultHighlight": {
+    "icon": "alert",
+    "type": "text",
+    "foreground": "#FF8C00",
+    "opacity": 50
+  },
+  "todo-tree.highlights.customHighlight": {
+    "TODO": {
+      "icon": "check",
+      "foreground": "#FF8C00",
+      "iconColour": "#FF8C00"
+    },
+    "FIXME": {
+      "icon": "flame",
+      "foreground": "#FF2D00",
+      "iconColour": "#FF2D00"
+    },
+    "HACK": {
+      "icon": "tools",
+      "foreground": "#C678DD",
+      "iconColour": "#C678DD"
+    },
+    "BUG": {
+      "icon": "bug",
+      "foreground": "#E06C75",
+      "iconColour": "#E06C75"
+    },
+    "XXX": {
+      "icon": "alert",
+      "foreground": "#E5C07B",
+      "iconColour": "#E5C07B"
+    },
+    "NOTE": {
+      "icon": "note",
+      "foreground": "#61AFEF",
+      "iconColour": "#61AFEF"
+    }
+  },
+  "todo-tree.tree.showBadges": true,
+  "todo-tree.tree.expanded": true,
+
   // === Spell Checker ===
   "cSpell.language": "en,ru",
   "cSpell.enabled": true,
