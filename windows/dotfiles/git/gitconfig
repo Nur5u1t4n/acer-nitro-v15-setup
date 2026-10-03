@@ -1,0 +1,33 @@
+# Глобальный ~/.gitconfig (Windows)
+# Применяется: windows/dotfiles/git/setup-git.ps1
+
+[user]
+	name = Nursultan Mukhametzhanov
+	email = mukhametzhanovnurs@gmail.com
+
+[init]
+	defaultBranch = main
+
+[core]
+	editor = nvim
+	autocrlf = true
+	longpaths = true
+
+[pull]
+	rebase = false
+
+[fetch]
+	prune = true
+
+[push]
+	default = simple
+	autoSetupRemote = true
+
+[color]
+	ui = auto
+
+[credential]
+	helper = manager
+
+# SSH уже через ~/.ssh/config (Host github.com)
+# Клонировать: git clone git@github.com:Nur5u1t4n/repo.git
