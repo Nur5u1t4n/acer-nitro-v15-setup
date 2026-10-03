@@ -68,6 +68,20 @@
   "explorer.confirmDragAndDrop": false,
   "explorer.compactFolders": false,
 
+  // === Python / Ruff ===
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
+    }
+  },
+
+  // === Spell Checker ===
+  "cSpell.language": "en,ru",
+  "cSpell.enabled": true,
+
   // === Security / Trust ===
   "security.workspace.trust.enabled": false,
 
