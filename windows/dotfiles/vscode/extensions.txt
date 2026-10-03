@@ -28,6 +28,10 @@ oderwat.indent-rainbow
 
 # === Language support ===
 rust-lang.rust-analyzer
+yzhang.markdown-all-in-one
+tamasfe.even-better-toml
+redhat.vscode-yaml
+sumneko.lua
 
 # === Optional (uncomment if needed) ===
 # golang.go
