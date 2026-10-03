@@ -68,35 +68,14 @@ ssh -T git@github.com
 .\vscode\install-extensions.ps1
 ```
 
-## Neovim (LazyVim)
+## Конфигурации программ
 
-Конфигурация в `nvim/` устанавливается в `%LOCALAPPDATA%\nvim` командой `apply.ps1`.
-Перед заменой существующей конфигурации скрипт сохраняет её рядом как `nvim.bak-<timestamp>`.
+Подробные инструкции размещаются рядом с конфигурациями программ:
 
-Используется базовая конфигурация LazyVim и Mason для управления LSP:
-
-| Язык / область | LSP-сервер |
-|---|---|
-| Python | Pyright (`pyright`) |
-| Rust | rust-analyzer (`rust_analyzer`) |
-| HTML | `html` |
-| CSS | `cssls` |
-| JavaScript / TypeScript | vtsls (`vtsls`) |
-| Tailwind CSS | `tailwindcss` |
-| TOML | Taplo (`taplo`) |
-| YAML | `yamlls` |
-| Markdown | Marksman (`marksman`) |
-| Lua | `lua_ls` |
-
-Требуются Neovim, Git и доступ к интернету при первом запуске. После `apply.ps1` откройте
-PowerShell и выполните:
-
-```powershell
-nvim
-```
-
-Первый запуск загрузит плагины; Mason установит настроенные LSP-серверы. Для диагностики
-в Neovim выполните `:LazyHealth`, а для проверки активного сервера — `:LspInfo`.
+- [Neovim + LazyVim](nvim/README.md) — установка, языковые серверы, обновление и восстановление.
+- [VS Code](vscode/README.md) — настройки и расширения.
+- [Git](git/README.md) — глобальная конфигурация.
+- [SSH](ssh/README.md) — настройка SSH-доступа.
 
 ## Дальше
 

@@ -1,7 +1,11 @@
 # Документация
 
-- bios-settings.md
-- partition-plan.md
-- troubleshooting.md
+Документы проекта:
 
-Будут заполняться по мере подготовки.
+- [Правила ведения документации](documentation-guidelines.md)
+- [Настройки BIOS](bios-settings.md)
+- [План разметки дисков](partition-plan.md)
+- [Подготовка Windows к dual-boot](windows-prep.md)
+- [Разметка дисков](partitioning.md)
+- [Общий раздел DATA](data-mount.md)
+- [Полное руководство по dual-boot](dual-boot-guide.md)

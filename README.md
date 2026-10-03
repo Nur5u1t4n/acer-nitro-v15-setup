@@ -69,6 +69,8 @@ Windows 11 — для игр и программ, которым нужен Wind
 | [docs/data-mount.md](docs/data-mount.md) | Монтирование DATA в Windows и Omarchy |
 | [windows/](windows/) | `autounattend.xml` + install-apps + debloat |
 
+Правила структуры и сопровождения документации: [docs/documentation-guidelines.md](docs/documentation-guidelines.md).
+
 ---
 
 ## Порядок установки
